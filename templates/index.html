@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Content -->
+    <section id="content">
+        <div class="container">
+            <h2 class="section-heading" data-outline="content">Content</h2>
+            <div class="wrapper">
+                <div class="left">
+                    <h2 class="content-heading">Content</h2>
+                    <p class="content-desc">Web scraping with sentiment analysis</p>
+                    <div class="content-info">
+                        <ul>
+                            <li><a href="#">
+                                <span class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+                                      </svg>
+                                </span>
+                                <span class="text">Hashtag</span>
+                            </a></li>
+                            <li><a href="#">
+                                <span class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                      </svg>
+                                </span>
+                                <span class="text">Search</span>
+                            </a></li>
+                            <li><a href="#">
+                                <span class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                      </svg>
+                                </span>
+                                <span class="text">User</span>
+                            </a></li>
+                        </ul>
+                    </div>
+                    
+                </div>
+                <div class="right">
+                    <div class="form-wrapper">
+                        <form action="{{url_for('submitForm')}}" method="get">
+                            <div class="form-group">
+                                <label for="type">Type</label>
+                                <div class="input-wrapper">
+                                    <span class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                          </svg>
+                                    </span>
+                                    <input type="text" id="scrape" name="scrape">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="type">Number</label>
+                                <div class="input-wrapper">
+                                    <span class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                          </svg>
+                                    </span>
+                                    <input type="number" id="number" name="number">
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+                                <label for="type">Date</label>
+                                <div class="input-wrapper">
+                                    <span class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                          </svg>
+                                    </span>
+                                    <input type="number" id="number" name="date">
+                                </div>
+                            </div> -->
+                            <div class="form-group">
+                                <label for="type">Text</label>
+                                <div class="input-wrapper">
+                                    <span class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                          </svg>
+                                    </span>
+                                    <input type="text" id="textinp" name="textinput">
+                                </div>
+                            </div>
+                            <button class ="buttons scrape" type="submit">Scrape</button>
+                        </form>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

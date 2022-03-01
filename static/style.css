@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@600&family=Roboto+Mono:wght@300;500&display=swap');
+
+
+:root{
+    --primary-color: #5924ed;
+    --secondary-black: #0d081a;
+    --secondary-gray: #48464b;
+    --body-bg: #efebfa;
+}
+
+
+/*global*/
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    font-family: 'Roboto Mono', sans-serif;
+    font-size: 10px;
+    scroll-behavior: smooth;
+}
+body {
+    background-color: var(--body-bg);
+}
+img {
+    width: 100%;
+    height: 100%;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+p {
+    font-size: 1.6rem;
+    color: var(--secondary-black);
+}
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1000px;
+
+}
+.section-heading {
+	font-size: clamp(2rem, 10vw, 8rem);
+	text-transform: uppercase;
+	font-family: 'Montserrat';
+	letter-spacing: 0.2rem;
+	text-align: center;
+	position: relative;
+	margin-bottom: 10rem;
+}
+.primary-btn {
+    display: inline-block;
+    background-color: var(--body-bg);
+    color: black;
+    font-size: 1.8rem;
+    padding: 0.6em 1.6em;
+    border-radius: 50px;
+    
+
+}
+.primary-btn:hover{
+    color: white;
+    background-color: #B4A1E9;
+    
+    
+    
+}
+.buttons {
+	margin-top: 3rem;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 2rem;
+    font-size: 1.5rem;
+    padding: 0.6em 2em;
+    background-color: var(--body-bg);
+    border: 2px solid black;
+    border-color: var(--primary-color);
+    border-radius: 50px;
+    cursor: pointer;
+    
+}
+.scrape{
+    border-color: #A89BCD;
+    text-transform: uppercase;
+    font-family: 'Roboto Mono';
+    letter-spacing: 0.1rem;
+    
+}
+.buttons:hover{
+    color: white;
+    background-color: var(--primary-color);
+}
+
+
+
+
+/*content*/
+#content {
+    padding: 10rem 0;
+
+}
+#content .wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+
+}
+#content .wrapper .left,
+#content .wrapper .right {
+    flex: 1;
+}
+#content .left .content-heading{
+    font-family: "Montserrat" sans-serif;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+
+}
+#content .left .content-desc {
+    color: var(--secondary-gray);
+    margin-bottom: 5rem;
+
+}
+#content .left .content-info{
+    margin-bottom: 5rem;
+}
+#content .left .content-info ul{
+    list-style: none;
+}
+#content .left .content-info ul li{
+    border-radius: 12px;
+    overflow: hidden;
+}
+#content .left .content-info ul li a{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 2rem;
+    padding: 1.5rem;
+    gap: 1rem;
+}
+#content .left .content-info ul li:hover {
+    background-color: var(--primary-color);
+}
+#content .left .content-info ul li:hover .text{
+    color: white;
+}
+#content .left .content-info ul li:hover .icon{
+    color: white;
+}
+#content .left .content-info ul li a .icon {
+    width: 25px;
+    color: var(--primary-color)
+}
+#content .left .content-info ul li a .text {
+    
+    color: var(--primary-gray)
+}
+#content .right .form-wrapper{
+    background-color: var(--primary-color);
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 5rem;
+    border-radius: 12px;
+    color: white;
+
+}
+#content .right .form-group{
+    margin-bottom: 1rem;
+
+}
+#content .right .form-group label{
+    margin-bottom:  0.5rem;
+    display: inline-block;
+    font-size: 1.8rem;
+}
+
+#content .right .form-group .input-wrapper {
+    background-color: white;
+    color: black;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 40px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#content .right .form-group .input-wrapper .icon{
+    font-size: 2rem ;
+    height: 100%;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:  rgb(218, 218, 218);
+}
+
+#content .right .form-group .input-wrapper input {
+    padding:  1rem;
+    height:  100%;
+    width:  100%;
+    outline:  none;
+    border:  none;
+    font-size: 2rem;
+}
+
+/* #content .right .form-wrapper button {
+    display: inline-block;
+    width: 150px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    height: auto;
+    padding: 0.75rem 0;
+    font-family: 'Roboto Mono';
+    letter-spacing: 0.2rem;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 2rem;
+} */
+
