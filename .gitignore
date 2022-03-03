@@ -3,4 +3,8 @@
 .idea/projectsns.iml
 .vscode/settings.json
 __pycache__/clean_predict.cpython-39.pyc
+
+static/image.png
+static/image.png
+static/tweets.csv
 snscrape/

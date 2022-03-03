@@ -21,9 +21,20 @@ def index():
 
 @app.route('/submit')
 def submitForm():
+    datestart = ''
+    datestartstring = ''
+    datestop = ''
+    datestopstring =''
     scape = request.args.get('scrape')
     number = request.args.get('number')
+    datestart = request.args.get('datestart')
+    datestop = request.args.get('datestop')
     tinput = request.args.get('textinput')
+
+    if datestart != '':
+        datestartstring = " since:"+datestart
+    if datestop != '':
+        datestopstring = " until:"+datestop
 
     tweets = []
     fields = ['Review','Date']
@@ -36,10 +47,10 @@ def submitForm():
         scraper = twitterScraper.TwitterUserScraper(user_input,False)
     elif inp.lower() =='search':
         search_input = tinput
-        scraper = twitterScraper.TwitterSearchScraper(search_input+" lang:th")
+        scraper = twitterScraper.TwitterSearchScraper(search_input+" lang:th"+datestartstring+datestopstring)
     elif inp.lower() == 'hashtag':
         hashtag_input = tinput
-        scraper = twitterScraper.TwitterHashtagScraper(hashtag_input+" lang:th")
+        scraper = twitterScraper.TwitterHashtagScraper(hashtag_input+" lang:th"+datestartstring+datestopstring)
 
     for i, tweet in  enumerate(scraper.get_items()):
         if i>n :
