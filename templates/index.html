@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    
+    
 </head>
 <body>
     <!-- Content -->
@@ -48,7 +52,8 @@
                 </div>
                 <div class="right">
                     <div class="form-wrapper">
-                        <form action="{{url_for('submitForm')}}" method="get">
+                        <form name="formData" onsubmit="return validation(this)">
+                        <!-- <form action="{{url_for('submitForm')}}" method="get"> -->
                             <div class="form-group">
                                 <label for="type">Type</label>
                                 <div class="input-wrapper">
@@ -70,14 +75,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="type">Number</label>
+                                <label for="type">Number (default : 100)</label>
                                 <div class="input-wrapper">
                                     <span class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                                           </svg>
                                     </span>
-                                    <input type="number" id="number" name="number" >
+                                    <input type="number" id="number" name="number" value="100" >
                                 </div>
                             </div>
                             <div class="form-group">
@@ -104,12 +109,58 @@
                                     <input type="text" id="textinp" name="textinput" >
                                 </div>
                             </div>
-                            <button class ="buttons scrape" type="submit">Scrape</button>
+                            <button class ="buttons scrape" type="submit" >Scrape</button>
                         </form>   
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <script>
+        
+        function validation(form){
+            var typeVal = document.forms["formData"]["scrape"].value;
+            var numVal = document.forms["formData"]["number"].value;
+            var nameVal = document.forms["formData"]["textinput"].value;
+            if(nameVal == null || nameVal == "" ) {
+                Swal.fire({
+                icon: 'error',
+                title: 'Please fill out Text Field',
+                text: 'Something went wrong!',
+                
+                })
+                return false;
+            }
+            if(typeVal == null || typeVal == ""){
+                Swal.fire({
+                icon: 'error',
+                title: 'Please fill out Type Field',
+                text: 'Something went wrong!',
+                
+                })
+                return false;
+            }
+            if(numVal <= 0 ){
+                Swal.fire({
+                icon: 'error',
+                title: "Number input can't be 0 or negative numbers ",
+                text: 'Something went wrong!',
+                
+                })
+                return false;
+            }
+            else{
+                Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Success',
+                showConfirmButton: false,
+                timer: 1500
+                })
+                form.action = "{{url_for('submitForm')}}";
+                return true;
+            }
+        }
+    </script>
 </body>
 </html>

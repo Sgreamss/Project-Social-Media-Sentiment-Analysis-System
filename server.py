@@ -37,15 +37,14 @@ def submitForm():
         datestopstring = " until:"+datestop
 
     tweets = []
-    fields = ['Review','Date']
+    fields = ['Review','Date','Name']
 
     n = int(number)
+    tweetcount = 0
     inp = scape
 
-    if inp.lower() == 'user':
-        user_input = tinput
-        scraper = twitterScraper.TwitterUserScraper(user_input,False)
-    elif inp.lower() =='search':
+    
+    if inp.lower() =='search':
         search_input = tinput
         scraper = twitterScraper.TwitterSearchScraper(search_input+" lang:th"+datestartstring+datestopstring)
     elif inp.lower() == 'hashtag':
@@ -56,10 +55,10 @@ def submitForm():
         if i>n :
             break
     
-    
+        tweetcount+=1
         date = datetime.datetime.strftime(tweet.date,"%Y-%d-%m %H:%M:%S+%f")
         d1 = date.split(" ")
-        tweets.append([f"{tweet.content}",f"{d1[0]}"] )
+        tweets.append([f"{tweet.content}",f"{d1[0]}",f"{tinput}"] )
 
     with open('static/tweets.csv','w',encoding='UTF8') as f:
         writer = csv.writer(f)
