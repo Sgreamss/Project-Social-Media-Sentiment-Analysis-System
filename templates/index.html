@@ -74,7 +74,29 @@
 
                                 </div>
                             </div>
+                            
                             <div class="form-group">
+                                <label for="type">Text</label>
+                                <div class="input-wrapper">
+                                    <span class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                          </svg>
+                                    </span>
+                                    <div class="select" >
+                                        <select  name="textinput" id="textinp">
+                                            <option value="" selected disabled hidden>Select Food Brand Here</option>
+                                            <option value="grab">Grab</option>
+                                            <option value="foodpanda">FoodPanda</option>
+                                            <option value="lineman">Lineman</option>
+                                            <option value="robinhood">Robinhood</option>
+                                        </select>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- <div class="form-group">
                                 <label for="type">Number (default : 100)</label>
                                 <div class="input-wrapper">
                                     <span class="icon">
@@ -84,7 +106,7 @@
                                     </span>
                                     <input type="number" id="number" name="number" value="100" >
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label for="type">Date (optional)</label>
                                 <div class="input-wrapper">
@@ -98,7 +120,7 @@
                                     <input class="dt" type="date" id="date" name="datestop">
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="type">Text</label>
                                 <div class="input-wrapper">
                                     <span class="icon">
@@ -108,7 +130,7 @@
                                     </span>
                                     <input type="text" id="textinp" name="textinput" >
                                 </div>
-                            </div>
+                            </div> -->
                             <button class ="buttons scrape" type="submit" >Scrape</button>
                         </form>   
                     </div>
@@ -120,7 +142,7 @@
         
         function validation(form){
             var typeVal = document.forms["formData"]["scrape"].value;
-            var numVal = document.forms["formData"]["number"].value;
+            // var numVal = document.forms["formData"]["number"].value;
             var nameVal = document.forms["formData"]["textinput"].value;
             if(nameVal == null || nameVal == "" ) {
                 Swal.fire({
@@ -140,15 +162,15 @@
                 })
                 return false;
             }
-            if(numVal <= 0 ){
-                Swal.fire({
-                icon: 'error',
-                title: "Number input can't be 0 or negative numbers ",
-                text: 'Something went wrong!',
+            // if(numVal <= 0 ){
+            //     Swal.fire({
+            //     icon: 'error',
+            //     title: "Number input can't be 0 or negative numbers ",
+            //     text: 'Something went wrong!',
                 
-                })
-                return false;
-            }
+            //     })
+            //     return false;
+            // }
             else{
                 Swal.fire({
                 position: 'top-end',

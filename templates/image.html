@@ -11,14 +11,15 @@
     <!-- Content -->
     <section id="content">
         <div class="container">
-            <h2 class="section-heading" data-outline="content">Result</h2>
+            <h2 class="section-heading" >Result</h2>
             <p style="padding: 20px;" class="content-desc">Data from {{ data.tweetCount }} tweets </p>
             <img src= "{{  data.image  }}", alt="",> 
             
             
+            
             {% for item in data.exampleTweet %}
 
-                <p style="padding: 5px 20px;white-space: nowrap;" class="content-desc">{{ item[4] }}&nbsp;&nbsp;{{ item[0] }}</p>
+                <p style="padding: 10px 20px;white-space: nowrap;" class="content-desc">{{ item[4] }}&nbsp;&nbsp;{{ item[0] }}</p>
 
             {% endfor %}
             

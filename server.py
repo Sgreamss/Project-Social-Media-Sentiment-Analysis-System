@@ -26,7 +26,7 @@ def submitForm():
     datestop = ''
     datestopstring =''
     scape = request.args.get('scrape')
-    number = request.args.get('number')
+    # number = request.args.get('number')
     datestart = request.args.get('datestart')
     datestop = request.args.get('datestop')
     tinput = request.args.get('textinput')
@@ -39,7 +39,7 @@ def submitForm():
     tweets = []
     fields = ['Review','Date','Name']
 
-    n = int(number)
+    n = int(100)
     tweetcount = 0
     inp = scape
 
