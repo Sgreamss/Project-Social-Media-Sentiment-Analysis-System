@@ -52,7 +52,7 @@ def submitForm():
         scraper = twitterScraper.TwitterHashtagScraper(hashtag_input+" lang:th"+datestartstring+datestopstring)
 
     for i, tweet in  enumerate(scraper.get_items()):
-        if i>n :
+        if i>=n :
             break
     
         tweetcount+=1
@@ -68,6 +68,9 @@ def submitForm():
     if(os.path.exists('static/tweets.csv')):
         clean()
         df = pd.read_csv('static/tweets.csv')
+        
+        dfshow = df.head(10)
+        example_list = dfshow.values.tolist()
         # palette = { c:'green' if c =='pos' else 'red' if c =='neg' else 'blue' for c in df.predict.unique()}
         # a = plt.subplots(figsize = (10,8))
         # a = df.groupby(['Month','predict'], sort=False, as_index=False).agg(count=('Month','count'))
@@ -95,10 +98,10 @@ def submitForm():
             plt.savefig(imagepath)
             plt.clf()
 
-        
+        data = {"tweetCount":tweetcount,"image":imagepath,"exampleTweet":example_list}
 
 
-    return render_template("image.html", image = imagepath)
+    return render_template("image.html",data = data)
 
 @app.route('/image')
 def image():

@@ -12,7 +12,16 @@
     <section id="content">
         <div class="container">
             <h2 class="section-heading" data-outline="content">Result</h2>
-            <img src= "{{  image  }}", alt="",> 
+            <p style="padding: 20px;" class="content-desc">Data from {{ data.tweetCount }} tweets </p>
+            <img src= "{{  data.image  }}", alt="",> 
+            
+            
+            {% for item in data.exampleTweet %}
+
+                <p style="padding: 5px 20px;white-space: nowrap;" class="content-desc">{{ item[4] }}&nbsp;&nbsp;{{ item[0] }}</p>
+
+            {% endfor %}
+            
             <form action="{{url_for('index')}}">
                 <button class = 'buttons'type="submit" >Back</button>
             </form>
