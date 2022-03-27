@@ -60,6 +60,11 @@ def submitForm():
         d1 = date.split(" ")
         tweets.append([f"{tweet.content}",f"{d1[0]}",f"{tinput}"] )
 
+    if(tweetcount == 0):
+        data = {"tweetCount":tweetcount}
+        return render_template("index.html",data = data)
+    
+
     with open('static/tweets.csv','w',encoding='UTF8') as f:
         writer = csv.writer(f)
         writer.writerow(fields)
@@ -71,13 +76,7 @@ def submitForm():
         
         dfshow = df.head(10)
         example_list = dfshow.values.tolist()
-        # palette = { c:'green' if c =='pos' else 'red' if c =='neg' else 'blue' for c in df.predict.unique()}
-        # a = plt.subplots(figsize = (10,8))
-        # a = df.groupby(['Month','predict'], sort=False, as_index=False).agg(count=('Month','count'))
-        # sns.lineplot(data=a , x='Month', y="count", hue='predict', marker= "o" , palette=palette)
-        # imagepath = os.path.join('static','image'+'.png')
-        # plt.savefig(imagepath)
-
+        
         palette = { c:'green' if c =='pos' else 'red' if c =='neg' else 'blue' for c in df.predict.unique()}
 
         month_count =  df.groupby('Month')

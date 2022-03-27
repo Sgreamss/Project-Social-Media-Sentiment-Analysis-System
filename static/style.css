@@ -40,8 +40,9 @@ p {
 }
 section {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    
 }
 .container {
     width: 90%;
@@ -121,7 +122,7 @@ section {
     
     outline: none;
     cursor: pointer;
-    padding: 5px 16px;
+    padding: 5px 10px;
     transition: 0.3s;
     font-size: 17px;
 }
@@ -133,10 +134,7 @@ section {
 }
 
 
-/* #Compare{
-    display: none;
-    
-} */
+
 
 
 
@@ -149,7 +147,8 @@ section {
 }
 #content .wrapper{
     display: flex;
-    align-items: center;
+    
+    align-items: flex-start;
     justify-content: center;
     gap: 5rem;
 
@@ -158,6 +157,7 @@ section {
 #content .wrapper .right {
     flex: 1;
 }
+
 #content .left .content-heading{
     font-family: "Montserrat" sans-serif;
     font-size: 3rem;
