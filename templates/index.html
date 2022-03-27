@@ -18,7 +18,7 @@
             <h2 class="section-heading" >Food Delivery Sentiment Analysis  </h2>
             <div class="wrapper">
                 <div class="left">
-                    <h2 class="content-heading">Brand Monitoring from Social Media  </h2>
+                    <h2 class="content-heading">Brand Monitoring from Twitter  </h2>
                     <p class="content-desc">Web scraping with sentiment analysis </p>
                     <div class="content-info">
                         <ul>
@@ -51,6 +51,12 @@
                     
                 </div>
                 <div class="right">
+                    <div class="tab">
+                        <button id="default" class="tablinks" onclick="openTab(event,'Focus')">Focus on one Brand</button>
+                        <button class="tablinks" onclick="openTab(event,'Compare')">Compare between two Brand</button>
+                    </div>
+
+                    <div id="Focus" class="tabcontent">
                     <div class="form-wrapper">
                         <form name="formData" onsubmit="return validation(this)">
                         <!-- <form action="{{url_for('submitForm')}}" method="get"> -->
@@ -69,14 +75,13 @@
                                             <option value="search">Search</option>
                                             <option value="hashtag">Hashtag</option>
                                         </select>
-                                    </div>
-                                    
+                                    </div>                                   
 
                                 </div>
                             </div>
                             
                             <div class="form-group">
-                                <label for="type">Text</label>
+                                <label for="type">Food Brand</label>
                                 <div class="input-wrapper">
                                     <span class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -134,34 +139,144 @@
                             <button class ="buttons scrape" type="submit" >Scrape</button>
                         </form>   
                     </div>
+                    </div>
+                    <div id="Compare" class="tabcontent">
+                        <div class="form-wrapper">
+                            <form name="formData" onsubmit="return validation(this)">
+                            <!-- <form action="{{url_for('submitForm')}}" method="get"> -->
+                                <div class="form-group">
+                                    <label for="type">Type</label>
+                                    <div class="input-wrapper">
+                                        <span class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                              </svg>
+                                        </span>
+                                        <!-- <input type="text" id="scrape" name="scrape"> -->
+                                        <div class="select" >
+                                            <select  name="scrape" id="scrape">
+                                                <option value="" selected disabled hidden>Select Type Here</option>
+                                                <option value="search">Search</option>
+                                                <option value="hashtag">Hashtag</option>
+                                            </select>
+                                        </div>
+                                        
+    
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="type">Food Brand</label>
+                                    <div class="input-wrapper">
+                                        <span class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                              </svg>
+                                        </span>
+                                        <div class="select" >
+                                            <select  name="textinput" id="textinp">
+                                                <option value="" selected disabled hidden>Select Food Brand Here</option>
+                                                <option value="grab">Grab</option>
+                                                <option value="foodpanda">FoodPanda</option>
+                                                <option value="lineman">Lineman</option>
+                                                <option value="robinhood">Robinhood</option>
+                                            </select>
+                                        </div>                                      
+                
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="type">Food Brand 2</label>
+                                    <div class="input-wrapper">
+                                        <span class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                              </svg>
+                                        </span>
+                                        <div class="select" >
+                                            <select  name="textinput" id="textinp">
+                                                <option value="" selected disabled hidden>Select Food Brand to Compare Here</option>
+                                                <option value="grab">Grab</option>
+                                                <option value="foodpanda">FoodPanda</option>
+                                                <option value="lineman">Lineman</option>
+                                                <option value="robinhood">Robinhood</option>
+                                            </select>
+                                        </div>                                      
+                
+                                    </div>
+                                </div>
+
+                                
+    
+
+                                <div class="form-group">
+                                    <label for="type">Date (optional)</label>
+                                    <div class="input-wrapper">
+                                        <span class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                              </svg>
+                                        </span>
+                                        <input class="dt" type="date" id="date" name="datestart">
+                                        
+                                        <input class="dt" type="date" id="date" name="datestop">
+                                    </div>
+                                </div>
+                                
+                                <button class ="buttons scrape" type="submit" >Scrape</button>
+                            </form>   
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
     </section>
     <script>
+        document.getElementById("default").click();
+        
+        function openTab(evt ,tabName){
+            var i ,tabcontent,tablinks;
+
+            //get element จากชื่อ class แล้วซ่อนไว้
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i<tabcontent.length;i++){
+                tabcontent[i].style.display = 'none';
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0;i<tablinks.length;i++){
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
         
         function validation(form){
             var typeVal = document.forms["formData"]["scrape"].value;
             // var numVal = document.forms["formData"]["number"].value;
             var nameVal = document.forms["formData"]["textinput"].value;
-            if(nameVal == null || nameVal == "" ) {
-                Swal.fire({
-                icon: 'error',
-                title: 'Please fill out Text Field',
-                text: 'Something went wrong!',
-                
-                })
-                return false;
-            }
             if(typeVal == null || typeVal == ""){
                 Swal.fire({
                 icon: 'error',
-                title: 'Please fill out Type Field',
+                title: 'Please select Type',
                 text: 'Something went wrong!',
                 
                 })
                 return false;
             }
+            if(nameVal == null || nameVal == "" ) {
+                Swal.fire({
+                icon: 'error',
+                title: 'Please select Brand to Scrape',
+                text: 'Something went wrong!',
+                
+                })
+                return false;
+            }
+            
             // if(numVal <= 0 ){
             //     Swal.fire({
             //     icon: 'error',

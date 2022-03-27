@@ -88,6 +88,7 @@ section {
     border-color: var(--primary-color);
     border-radius: 50px;
     cursor: pointer;
+    transition: 0.3s;
     
 }
 .scrape{
@@ -100,7 +101,43 @@ section {
 .buttons:hover{
     color: white;
     background-color: var(--primary-color);
+    
 }
+
+.tab {
+    overflow: hidden;
+    padding: 0px 20px ;
+    border:  1 px solid #ccc;
+    background-color: var(--body-bg);
+    
+}
+.tab button {
+    background-color: var(--body-bg);
+    border: 2px solid black;
+    border-color: var(--primary-color);
+    border-radius: 12px 12px 0px 0px;
+    border-bottom: none;
+    float: left;
+    
+    outline: none;
+    cursor: pointer;
+    padding: 5px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+.tab button:hover,
+.tab button.active{
+    color: white;
+    background-color: var(--primary-color);
+    
+}
+
+
+/* #Compare{
+    display: none;
+    
+} */
+
 
 
 
@@ -201,8 +238,8 @@ section {
 #content .right .form-group .input-wrapper .icon{
     font-size: 1.5rem ;
     height: 100%;
-    width: 50px;
-    display: flex;
+    width: 40px;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     background-color:  rgb(218, 218, 218);
@@ -227,6 +264,10 @@ section {
 }
 select{
     appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+
     background-color: transparent;
     border: none;
     padding: 0em 0.25em;
@@ -239,6 +280,19 @@ select{
     line-height: inherit;
     outline: none;
     
+    background-image:
+        linear-gradient(45deg, transparent 50%, gray 50%),
+        linear-gradient(135deg, gray 50%, transparent 50%),
+        linear-gradient(to right, #ccc, #ccc);
+    background-position:
+        calc(100% - 18px) calc(0.75em ),
+        calc(100% - 13px) calc(0.75em ),
+        calc(100% - 2.5em) 0.25em;
+    background-size:
+        5px 5px,
+        5px 5px,
+        1px 1.5em;
+    background-repeat: no-repeat;
 }
 #content .right .form-group .input-wrapper .select{
     
