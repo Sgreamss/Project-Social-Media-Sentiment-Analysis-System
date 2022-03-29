@@ -30,6 +30,7 @@
                                       </svg>
                                 </span>
                                 <span class="text">Hashtag</span>
+                                <p class=" text">: Specific on hashtag</p>
                             </a></li>
                             <li><a href="#">
                                 <span class="icon">
@@ -38,6 +39,7 @@
                                       </svg>
                                 </span>
                                 <span class="text">Search</span>
+                                <p class=" text">: Search based on keyword</p>
                             </a></li>
                             
                         </ul>
@@ -203,11 +205,22 @@
         </div>
     </section>
     <script>
+        
+        
         today = datetime();
+        firstDayOfLastMonth = datetimeFirstDayOfLastMonth();
         document.getElementById("default").click();
         for(count = 1;count<=4;count++){
             value = "date" + String(count);
             document.getElementById(value).setAttribute("max",today);
+            
+            if (count == 1  || count == 3){
+                document.getElementById(value).setAttribute("value",firstDayOfLastMonth);
+            }
+            if (count == 2 || count == 4){
+                document.getElementById(value).setAttribute("value",today);
+            }
+        
         }
         
 
@@ -245,7 +258,26 @@
             today = year + '-' + month + '-' + day;
             return today
         }     
-        
+
+        function datetimeFirstDayOfLastMonth(){
+            datetoday = new Date();
+            year = datetoday.getFullYear();
+            month = datetoday.getMonth() ;
+            day = '01';
+            
+            if(month == 0){
+                month = '12'
+                year = datetoday.getFullYear() -1
+            }
+            else if (month < 10) {
+                month = '0' + month;
+            } 
+            
+
+                    
+            today2 = year + '-' + month + '-' + day;
+            return today2
+        }
         
         
 
@@ -273,13 +305,23 @@
                 return false;
             }
             else{
+                // Swal.fire({
+                // position: 'top-end',
+                // icon: 'success',
+                // title: 'Success',
+                // showConfirmButton: false,
+                // timer: 1500
+                // })
                 Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Success',
+                title: 'Now loading !',
+                html: 'Loading time depends on quantity of Data',// add html attribute if you want or remove
+                allowOutsideClick: false,
+                allowEscapeKey: false,
                 showConfirmButton: false,
-                timer: 1500
-                })
+                didOpen: () => {
+                    Swal.showLoading()
+                },
+                });
                 form.action = "{{url_for('submitForm')}}";
                 return true;
             }
@@ -326,14 +368,19 @@
                 return false;
             }
             else{
+                
+
                 Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Success',
+                title: 'Now loading !',
+                html: 'Loading time depends on quantity of Data',// add html attribute if you want or remove
+                allowOutsideClick: false,
+                allowEscapeKey: false,
                 showConfirmButton: false,
-                timer: 1500
-                })
-                form.action = "{{url_for('submitForm')}}";
+                didOpen: () => {
+                    Swal.showLoading()
+                },
+                });
+                form.action = "{{url_for('submitCompareForm')}}";
                 return true;
             }
         }

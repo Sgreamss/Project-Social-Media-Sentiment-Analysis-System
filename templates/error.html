@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <!-- Content -->
+    <section id="content">
+        <div class="container">
+            <h2 class="section-heading" >Result</h2>
+            <p style="padding: 20px;" class="content-desc">We found {{ data.tweetCount }} data from what you looking for </p>
+            <p style="padding: 10px 40px;" >Suggestion : Try again with different date input or type input </p>
+                            <form action="{{url_for('index')}}">
+                                <button class = 'buttons'type="submit" >Back</button>
+                            </form>
+    </section>
+    <script>
+        if (parseInt('{{ data.tweetCount }}') == 0 ){
+            Swal.fire({
+                icon: 'error',
+                title: "Can't find what you looking for",
+                text: 'Please try again with different input',
+                
+                })
+        }
+    </script>
+</body>
+</html>

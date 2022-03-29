@@ -24,11 +24,13 @@ body {
     background-color: var(--body-bg);
 }
 img {
-    width: 110%;
-    height: 110%;
-    display: block;
+    width: 100%;
+    /* height: 100%; */
+    
+    /* display: block;
   margin-left: auto;
   margin-right: auto;
+  object-fit: cover; */
 }
 a {
     color: black;
@@ -318,20 +320,72 @@ select{
     
 }
 
+#result {
+    padding: 5rem 0;
 
-/* #content .right .form-wrapper button {
-    display: inline-block;
-    width: 150px;
-    font-size: 1.5rem;
-    text-transform: uppercase;
+}
+#result .resultwrapper{
+    display: flex;
+    
+    align-items: flex-start;
+    justify-content: center;
+    gap: 5rem;
+
+}
+#result .resultwrapper .leftexp,
+#result .resultwrapper .rightexp {
+    flex: 1;
+}
+#result .resultwrapper .leftexp img,
+#result .resultwrapper .rightexp img{
+    
+    display: block;
+    width: 100%;
     height: auto;
-    padding: 0.75rem 0;
-    font-family: 'Roboto Mono';
-    letter-spacing: 0.2rem;
-    border-radius: 8px;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    margin-top: 2rem;
-} */
+    
+    
+}    
+#result .container{
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1750px;
+
+}
+
+#result .grid-container{
+    display: grid;
+    grid-template-columns: 875px 875px;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    padding: 10px;
+    
+
+}
+
+#result .grid-container > div {
+    padding: 20px 0;
+    display: inline-block;
+    
+}
+
+ .click-zoom input[type=checkbox] {
+    display: none
+}
+
+ .click-zoom img {
+    /* margin: 100px; */
+    transition: transform 0.25s ease;
+    cursor: zoom-in
+}
+ .click-zoom input[type=checkbox]:checked~img {
+    transform: scale(1.5);
+    cursor: zoom-out
+}
+
+.brand {
+    padding: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    border-bottom: 2px solid var(--primary-color);
+}
 

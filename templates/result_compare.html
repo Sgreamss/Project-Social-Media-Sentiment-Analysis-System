@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <!-- Content -->
+    <section id="result">
+        <div class="container">
+            <h2 class="section-heading" >Result</h2>
+            <p style="padding: 20px;" class="content-desc">Data from {{ data.tweetCount }} tweets </p>
+            
+            <div class="grid-container"> 
+                <div class="click-zoom">
+                    <label>
+                      <input type="checkbox">
+                      <img src= "{{  data.image  }}", alt="",>
+                    </label>
+                </div>
+                <div class="click-zoom">
+                    <label>
+                      <input type="checkbox">
+                      <img src= "{{  data.imageCompare  }}", alt="",>
+                    </label>
+                </div>
+                <div>
+                    <p  class="brand">Brand&nbsp;:&nbsp;{{ data.exampleTweet[0][2] }}</p>
+                    {% for item in data.exampleTweet %}
+
+                        <p style="padding: 10px 20px;" class="content-desc">{{ item[4] }}&nbsp;&nbsp;{{ item[0] }}</p>
+
+                    {% endfor %}
+                </div>
+                <div>
+                    <p  class="brand">Brand&nbsp;:&nbsp;{{ data.exampleTweet2[0][2] }}</p>
+                    {% for item in data.exampleTweet2 %}
+
+                        <p style="padding: 10px 20px;" class="content-desc">{{ item[4] }}&nbsp;&nbsp;{{ item[0] }}</p>
+
+                    {% endfor %}
+                </div>
+            </div>
+            
+            
+            
+            <!-- <div class="resultwrapper">
+                <div class="leftexp">
+                    
+                    <img src= "{{  data.image  }}", alt="",> 
+
+                    {% for item in data.exampleTweet %}
+
+                        <p style="padding: 10px 20px;" class="content-desc">{{ item[4] }}&nbsp;&nbsp;{{ item[0] }}</p>
+
+                    {% endfor %}
+                </div>
+                <div class="rightexp">
+                    <img src= "{{  data.imageCompare  }}", alt="",> 
+                    {% for item in data.exampleTweet2 %}
+
+                        <p style="padding: 10px 20px;" class="content-desc">{{ item[4] }}&nbsp;&nbsp;{{ item[0] }}</p>
+
+                    {% endfor %}
+                </div>
+            </div> -->
+        
+            
+            
+            <form action="{{url_for('index')}}">
+                <button class = 'buttons'type="submit" >Back</button>
+            </form>
+            
+
+
+            
+        </div>
+    </section>
+    
+</body>
+</html>
