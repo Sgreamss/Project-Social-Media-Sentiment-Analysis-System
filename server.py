@@ -80,6 +80,7 @@ def submitForm():
         df = pd.read_csv('static/tweets.csv')
         
         dfshow = df.head(10)
+        dfshow = dfshow.sort_values('predict')
         example_list = dfshow.values.tolist()
         
         palette = { c:'green' if c =='pos' else 'red' if c =='neg' else 'blue' for c in df.predict.unique()}
@@ -193,54 +194,88 @@ def submitCompareForm():
         df3 = pd.read_csv('static/tweetsCompare.csv')
 
         dfshow = df2.head(10)
+        dfshow = dfshow.sort_values('predict',ascending=False)
         example_list = dfshow.values.tolist()
 
         dfshowCompare = df3.head(10)
+        dfshowCompare = dfshowCompare.sort_values('predict',ascending=False)
         example_listCompare = dfshowCompare.values.tolist()
         
+        month_count_all1 =  df2.groupby('Month')
+        month_count_all2 =  df3.groupby('Month')
+
         palette = {c:'green' if c =='pos' else 'red' if c =='neg' else 'blue' for c in df2.predict.unique()}
 
-        a = plt.subplots(figsize = (20,7))
-        a = df2.groupby(['Month','predict'], sort=False, as_index=False).agg(Rating=('Month','count'))
-        a = sns.histplot(data = a ,x='Month', weights ='Rating' , hue='predict' , palette = palette , multiple = 'stack' , shrink = 0.8)
-        #a.set_title('Tips by Day and Gender')
-        a.set_ylabel('Number of Tweets')
-        for p in a.patches:
-            height = int(p.get_height())
-            width = p.get_width()
-            x = p.get_x()
-            y = p.get_y()
-            label_text = f'{height}'
-            label_x = x + width / 2
-            label_y = y + height / 2
-            if height > 0:
-                a.text(label_x, label_y, label_text, ha='center', va='center', fontsize=12)
-        imagepath = os.path.join('static','image'+'.png')
-        plt.savefig(imagepath)
-        plt.clf()
+        if(len(list(month_count_all1.groups.keys())) == 1):
+            a = plt.subplots(figsize = (20,7))
+            sns.set_theme(style="darkgrid")
+            a = sns.countplot(data = df2, x ='Month' , hue='predict' , palette=palette)
+            a.legend(title='predict', bbox_to_anchor=(1, 1), loc='upper left')
+            a.set_ylabel('Number of Tweets')
+            for p in a.patches:             
+                a.annotate(np.round(p.get_height(),decimals=2),(p.get_x()+p.get_width()/2., p.get_height()), ha='center',va='center',xytext=(0, 10),textcoords='offset points')
+            imagepath = os.path.join('static','image'+'.png')
+            plt.savefig(imagepath)
+            plt.clf()
+        else:
+            a = plt.subplots(figsize = (20,7))
+            a = df2.groupby(['Month','predict'], sort=False, as_index=False).agg(Rating=('Month','count'))
+            a = sns.histplot(data = a ,x='Month', weights ='Rating' , hue='predict' , palette = palette , multiple = 'stack' , shrink = 0.8)
+            #a.set_title('Tips by Day and Gender')
+            a.set_ylabel('Number of Tweets')
+            for p in a.patches:
+                height = int(p.get_height())
+                width = p.get_width()
+                x = p.get_x()
+                y = p.get_y()
+                label_text = f'{height}'
+                label_x = x + width / 2
+                label_y = y + height / 2
+                if height > 0:
+                    a.text(label_x, label_y, label_text, ha='center', va='center', fontsize=12)
+            imagepath = os.path.join('static','image'+'.png')
+            plt.savefig(imagepath)
+            plt.clf()
 
-        b = plt.subplots(figsize = (20,7))
-        b = df3.groupby(['Month','predict'], sort=False, as_index=False).agg(Rating=('Month','count'))
-        b = sns.histplot(data = b ,x='Month', weights ='Rating' , hue='predict' , palette = palette , multiple = 'stack' , shrink = 0.8 )
-        #b.set_title('Tips by Day and Gender')
-        b.set_ylabel('Number of Tweets')
-        for p in b.patches:
-            height = int(p.get_height())
-            width = p.get_width()
-            x = p.get_x()
-            y = p.get_y()
-            label_text = f'{height}'
-            label_x = x + width / 2
-            label_y = y + height / 2
-            if height > 0:
-                b.text(label_x, label_y, label_text, ha='center', va='center', fontsize=12)
-        imagepathCompare = os.path.join('static','imageCompare'+'.png')
-        plt.savefig(imagepathCompare)
-        plt.clf()
+
+            
+        if(len(list(month_count_all2.groups.keys())) == 1):
+            b = plt.subplots(figsize = (20,7))
+            sns.set_theme(style="darkgrid")
+            b = sns.countplot(data = df2, x ='Month' , hue='predict' , palette=palette)
+            b.legend(title='pred', bbox_to_anchor=(1, 1), loc='upper left')
+            b.set_ylabel('Number of Tweets')
+            for p in b.patches:             
+                b.annotate(np.round(p.get_height(),decimals=2),(p.get_x()+p.get_width()/2., p.get_height()), ha='center',va='center',xytext=(0, 10),textcoords='offset points')
+            imagepathCompare = os.path.join('static','imageCompare'+'.png')
+            plt.savefig(imagepathCompare)
+            plt.clf()
+        else:
+            b = plt.subplots(figsize = (20,7))
+            b = df3.groupby(['Month','predict'], sort=False, as_index=False).agg(Rating=('Month','count'))
+            b = sns.histplot(data = b ,x='Month', weights ='Rating' , hue='predict' , palette = palette , multiple = 'stack' , shrink = 0.8 )
+            #b.set_title('Tips by Day and Gender')
+            b.set_ylabel('Number of Tweets')
+            for p in b.patches:
+                height = int(p.get_height())
+                width = p.get_width()
+                x = p.get_x()
+                y = p.get_y()
+                label_text = f'{height}'
+                label_x = x + width / 2
+                label_y = y + height / 2
+                if height > 10:
+                    b.text(label_x, label_y, label_text, ha='center', va='center', fontsize=12)
+            imagepathCompare = os.path.join('static','imageCompare'+'.png')
+            plt.savefig(imagepathCompare)
+            plt.clf()
+        
+    
+    data = {"tweetCount":tweetcount,"tweetMainCount":tweetMainCount,"tweetCompareCount":tweetCompareCount,"image":imagepath,"imageCompare":imagepathCompare,"exampleTweet":example_list,"exampleTweet2":example_listCompare}
+    return render_template("result_compare.html",data = data)
 
     
-    data = {"tweetCount":tweetcount,"image":imagepath,"imageCompare":imagepathCompare,"exampleTweet":example_list,"exampleTweet2":example_listCompare}
-    return render_template("result_compare.html",data = data)
+
         
 
 @app.route('/result')
