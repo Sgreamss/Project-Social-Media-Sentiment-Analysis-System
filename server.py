@@ -80,7 +80,7 @@ def submitForm():
         df = pd.read_csv('static/tweets.csv')
         
         dfshow = df.head(10)
-        dfshow = dfshow.sort_values('predict')
+        dfshow = dfshow.sort_values('predict',ascending=False)
         example_list = dfshow.values.tolist()
         
         palette = { c:'green' if c =='pos' else 'red' if c =='neg' else 'blue' for c in df.predict.unique()}

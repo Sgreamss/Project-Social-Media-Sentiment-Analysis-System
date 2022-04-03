@@ -257,9 +257,9 @@ section {
     font-size: 1.8rem;
 }
 #content .right .form-group .input-wrapper .dt {
-    padding:  1rem;
+    padding:  0.5rem;
     height:  100%;
-    width:  50%;
+    width:  55%;
     outline:  none;
     border:  none;
     font-size: 1.5rem;
@@ -391,5 +391,33 @@ select{
 }
 .line {
     border-bottom: 2px solid var(--primary-color);
+}
+
+.dt {
+    position: relative;
+    width: 200px; height: 20px;
+    color: black;
+}
+
+.dt:before {
+    position: relative;
+    
+    content: attr(data-date);
+    display: inline-block;
+    color: black;
+}
+
+.dt::-webkit-datetime-edit, .dt::-webkit-inner-spin-button, .dt::-webkit-clear-button {
+    display: none;
+}
+
+.dt::-webkit-calendar-picker-indicator {
+    position: relative;
+    /* position: absolute; */
+    /* top: 3px; */
+    right: 0;
+    
+    color: black;
+    opacity: 1;
 }
 
