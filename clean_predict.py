@@ -105,6 +105,7 @@ def cleanCompare():
     df['Month'] = df['Date'].dt.month_name()
     df.index = pd.CategoricalIndex(df["Month"],categories = Months, ordered = True)
     df = df.sort_index().reset_index(drop=True)
+    
 
 
 
@@ -120,6 +121,8 @@ def cleanCompare():
     num_df = ws2.transform(df[["wc","uwc"]].astype(float))
     X_df = np.concatenate([num_df,text_train.toarray()],axis=1)
     df['predict'] = ws3.predict(X_df)
+    # df = df.sort_values(by=['predict','Date'],ascending= [False,True])
+    
 
 
     #drop columns

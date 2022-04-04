@@ -79,6 +79,7 @@ def submitForm():
         clean()
         df = pd.read_csv('static/tweets.csv')
         
+        
         dfshow = df.head(10)
         dfshow = dfshow.sort_values('predict',ascending=False)
         example_list = dfshow.values.tolist()
@@ -193,6 +194,8 @@ def submitCompareForm():
         df2 = pd.read_csv('static/tweets.csv')
         df3 = pd.read_csv('static/tweetsCompare.csv')
 
+        
+
         dfshow = df2.head(10)
         dfshow = dfshow.sort_values('predict',ascending=False)
         example_list = dfshow.values.tolist()
@@ -200,15 +203,20 @@ def submitCompareForm():
         dfshowCompare = df3.head(10)
         dfshowCompare = dfshowCompare.sort_values('predict',ascending=False)
         example_listCompare = dfshowCompare.values.tolist()
+
+        df2 = df2.sort_values(by=['predict','Date'],ascending= [False,True])
+        df3 = df3.sort_values(by=['predict','Date'],ascending= [False,True])
         
         month_count_all1 =  df2.groupby('Month')
         month_count_all2 =  df3.groupby('Month')
 
         palette = {c:'green' if c =='pos' else 'red' if c =='neg' else 'blue' for c in df2.predict.unique()}
+        sns.set_theme(style="darkgrid")
+
 
         if(len(list(month_count_all1.groups.keys())) == 1):
             a = plt.subplots(figsize = (20,7))
-            sns.set_theme(style="darkgrid")
+            
             a = sns.countplot(data = df2, x ='Month' , hue='predict' , palette=palette)
             a.legend(title='predict', bbox_to_anchor=(1, 1), loc='upper left')
             a.set_ylabel('Number of Tweets')
@@ -241,9 +249,9 @@ def submitCompareForm():
             
         if(len(list(month_count_all2.groups.keys())) == 1):
             b = plt.subplots(figsize = (20,7))
-            sns.set_theme(style="darkgrid")
-            b = sns.countplot(data = df2, x ='Month' , hue='predict' , palette=palette)
-            b.legend(title='pred', bbox_to_anchor=(1, 1), loc='upper left')
+            
+            b = sns.countplot(data = df3, x ='Month' , hue='predict' , palette=palette)
+            b.legend(title='predict', bbox_to_anchor=(1, 1), loc='upper left')
             b.set_ylabel('Number of Tweets')
             for p in b.patches:             
                 b.annotate(np.round(p.get_height(),decimals=2),(p.get_x()+p.get_width()/2., p.get_height()), ha='center',va='center',xytext=(0, 10),textcoords='offset points')
@@ -264,7 +272,7 @@ def submitCompareForm():
                 label_text = f'{height}'
                 label_x = x + width / 2
                 label_y = y + height / 2
-                if height > 10:
+                if height > 0:
                     b.text(label_x, label_y, label_text, ha='center', va='center', fontsize=12)
             imagepathCompare = os.path.join('static','imageCompare'+'.png')
             plt.savefig(imagepathCompare)
