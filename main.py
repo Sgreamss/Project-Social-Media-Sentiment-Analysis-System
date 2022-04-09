@@ -44,7 +44,7 @@ def submitForm():
     tweets = []
     fields = ['Review','Date','Name']
 
-    n = int(2500)
+    n = int(10000)
     tweetcount = 0
     inp = scape
 
@@ -135,7 +135,7 @@ def submitCompareForm():
     tweetsCompare = []
     fields = ['Review','Date','Name']
 
-    n = int(5000)
+    n = int(10000)
     tweetcount = 0
     tweetMainCount = 0
     tweetCompareCount = 0
@@ -296,5 +296,5 @@ def image():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
 

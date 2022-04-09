@@ -8,3 +8,5 @@ static/image.png
 static/imageCompare.png
 static/tweets.csv
 static/tweetsCompare.csv
+.gcloudignore
+app.yaml
